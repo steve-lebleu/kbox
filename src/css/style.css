@@ -1,0 +1,149 @@
+#llightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* IE 8 not support rgba */
+    filter: alpha(opacity = 80);  /* IE 8 not support opacity */
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    opacity: 0;
+}
+
+#llightbox-modal {
+    position: absolute;
+    z-index: 10000;
+    top: 5%;
+    left: 5%;
+    opacity: 0;
+    display: none;
+}
+
+#llightbox-modal img {
+    border: 5px solid #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin: 0 0 5px 0;
+    z-index: 10000;
+}
+
+
+#llightbox-info {
+    height: 20px;
+    line-height: 20px;
+    background: transparent;
+    color: #fff;
+}
+
+#llightbox-info--context {
+    display: block;
+    float: left;
+    width: auto;
+    color: #999;
+    padding: 10px;
+    font-size: 0.8em;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+#llightbox-info--theme {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#llightbox-info--theme::after {
+    content : ' - ';
+}
+
+#llightbox-info--alt {
+    display: block;
+    float: right;
+    width: auto;
+    text-align: right;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.9em;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+
+#llightbox-close {
+    display: block;
+    position: absolute;
+    margin: -10px -10px 0 0;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    z-index: 10000;
+}
+#llightbox-close:hover {
+    cursor: pointer;
+    background: #666;
+    -moz-transition: all 0.4s ease-in;
+    -webkit-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+}
+
+
+.llightbox-nav {
+    height: calc(100% - 50px);
+    margin: 0 auto;
+    width: 101%; /* IE8 bugfix calc() not supported */
+    width: calc(100% + 10px);
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 25%;
+    opacity: 0;
+}
+
+.llightbox-nav:hover {
+    cursor: pointer;
+    -moz-transition: all 0.75s ease-in;
+    -webkit-transition: all 0.75s ease-in;
+    transition: all 0.75s ease-in;
+    opacity: 1;
+}
+
+.llightbox-nav span {
+    display: block;
+    position: absolute;
+    top: 45%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: #000;
+    padding: 5px 5px 0 5px;
+    color: #fff;
+}
+
+#llightbox-nav-prev {
+    left: 15px;
+    text-align: left;
+}
+#llightbox-nav-next {
+    right: 15px;
+    text-align: right;
+}
+#llightbox-nav-next span {
+    right: 0;
+}
+
+
+.llightbox img {
+    width: 120px;
+    margin: 15px;
+    float: left;
+}

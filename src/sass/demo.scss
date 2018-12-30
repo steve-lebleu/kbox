@@ -1,0 +1,233 @@
+@import "_variables-demo";
+@import "_mixins";
+@import "_font-awesome";
+
+/* Demo code */
+body {
+  background: $color_6;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: $font-base;
+  font-size: 13px;
+}
+
+nav {
+  height: 30px;
+  background: $color_2;
+  padding: 0 5px;
+}
+
+nav a,
+footer a {
+  color: $color_7;
+  line-height: 30px;
+  opacity: 1;
+  text-decoration: none;
+  &:hover {
+    @include transition("0.3s", "ease-in-out");
+    opacity: 0.7;
+  }
+}
+
+header, footer {
+  color: $color_7;
+  text-align: center;
+  background: $color_3;
+  font-family: $font-base;
+}
+
+header {
+  padding: 50px 0;
+}
+
+footer {
+  padding: 30px 0 15px 0;
+  margin: 60px auto 0 auto;
+  font-size: 0.8rem;
+  & p {
+    &:first-child {
+      margin: 50px auto 75px auto;
+    }
+  }
+  & a {
+    color: lighten($color_7, 20%);
+    @include transition(0.4s, ease-in-out);
+    &:hover {
+      color: darken($color_11, 15%);
+    }
+    &.link-icon {
+      font-size: 5rem;
+    }
+  }
+}
+
+h1 {
+  font-size: 5.5em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: $color_7;
+  text-transform: uppercase;
+  font-family: $font-alt;
+}
+
+h2 {
+  color: $color_7;
+  font-size: 3.75em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  margin: 70px 0 110px 0;
+  font-family: $font-alt;
+}
+
+pre {
+  font-size: 100%;
+}
+
+em {
+  background: $color_4;
+  @include border-radius(3px);
+  font-style: normal;
+  padding: 1px 3px;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  font-size: 0.9rem;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  & thead {
+    & th {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: $color_9;
+    }
+  }
+  & tbody {
+    & tr {
+      &:nth-child(even) {
+        background: #333333;
+      }
+      &:nth-child(odd) {
+        background: #232323;
+      }
+      & td {
+        padding: 15px 5px;
+        &:first-child {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+ul {
+  & li {
+    margin: 15px 0;
+  }
+}
+
+sup {
+  color: $color_4;
+}
+
+
+.text--slogan {
+  font-size: 1.75rem;
+  margin-bottom: 25px;
+  color: $color_5;
+  display: block;
+}
+
+.text--center {
+  text-align: center;
+}
+
+#wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10% 0;
+  background: $color_4;
+}
+
+.wrapper {
+  width: 75%;
+  margin: 0 auto;
+  color: $color_12;
+  padding: 60px 0;
+}
+
+.button--download {
+  display: block;
+  position: relative;
+  font-size: 1.50rem;
+  text-align: center;
+  margin: 40px auto 0 auto;
+  width: 200px;
+  background: $color_11;
+  color: $color_2;
+  padding: 20px 0;
+  overflow: hidden;
+  @include transition(0.4s, ease-in-out);
+  & .btn--txt {
+    background: transparent;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1003;
+    position: relative;
+  }
+  & .btn--bg_hidden {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: -200px;
+    z-index: 1002;
+    background: darken($color_11, 15%);
+  }
+  &:hover {
+    @include transition(0.4s, ease-in-out);
+    cursor: pointer;
+    background: darken($color_11, 15%);
+    color: $color_2;
+    & .btn--bg_hidden {
+      @include transition(0.4s, ease-in-out);
+      right: 0;
+    }
+  }
+}
+
+.github-svg {
+  fill: $color_11;
+  color: $color_2;
+  position: absolute;
+  top: 0;
+  border: 0;
+  right: 0;
+  @include transition(0.4s, ease-in-out);
+  &:hover {
+    fill: darken($color_11, 15%);
+    color: $color_2;
+  }
+}
+
+.kbox {
+  &-demo {
+    &-wrapper {
+      text-align: center;
+    }
+    &-thumbnail {
+      width: 180px;
+      margin: 15px;
+      border: 3px solid $color_1;
+    }
+  }
+}

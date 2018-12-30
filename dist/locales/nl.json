@@ -1,0 +1,7 @@
+{
+  "display": "Display",
+  "close": "Sluiten",
+  "previous": "Vorige afbeelding",
+  "next": "Volgende afbeelding",
+  "position": "Afbeelding {{current}} op {{total}}"
+}

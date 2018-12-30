@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+
+    <title>Pure vanilla.js lightbox plugin - Kbox.js</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Lato|Open+Sans|Montserrat' rel='stylesheet' type='text/css' />
+    <link href="./css/demo.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="./css/hody-icons.css" rel="stylesheet"  type="text/css" media="screen" />
+    <link href="./css/kbox.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script>
+			var _rollbarConfig = {
+				accessToken: "175cabdffa3d44409397bfc7a209e0d3",
+				captureUncaught: true,
+				payload: {
+					environment: "test"
+				}
+			};
+			!function(r){function e(t){if(o[t])return o[t].exports;var n=o[t]={exports:{},id:t,loaded:!1};return r[t].call(n.exports,n,n.exports,e),n.loaded=!0,n.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var t=o(1).Rollbar,n=o(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://d37gvrvc0wt4s1.cloudfront.net/js/v1.9/rollbar.min.js";var a=t.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,e){"use strict";function o(r){return function(){try{return r.apply(this,arguments)}catch(e){try{console.error("[Rollbar]: Internal error",e)}catch(o){}}}}function t(r,e,o){window._rollbarWrappedError&&(o[4]||(o[4]=window._rollbarWrappedError),o[5]||(o[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,o),e&&e.apply(window,o)}function n(r){var e=function(){var e=Array.prototype.slice.call(arguments,0);t(r,r._rollbarOldOnError,e)};return e.belongsToShim=!0,e}function a(r){this.shimId=++c,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var e=a;return o(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var o=this,t="scope"===r;t&&(o=new e(this));var n=Array.prototype.slice.call(arguments,0),a={shim:o,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),t?o:void 0})}function l(r,e){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){var o=e.addEventListener;e.addEventListener=function(e,t,n){o.call(this,e,r.wrap(t),n)};var t=e.removeEventListener;e.removeEventListener=function(r,e,o){t.call(this,r,e&&e._wrapped?e._wrapped:e,o)}}}var c=0;a.init=function(r,e){var t=e.globalAlias||"Rollbar";if("object"==typeof r[t])return r[t];r._rollbarShimQueue=[],r._rollbarWrappedError=null,e=e||{};var i=new a;return o(function(){if(i.configure(e),e.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var o,a,c="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(o=0;o<c.length;++o)a=c[o],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return e.captureUnhandledRejections&&(i._unhandledRejectionHandler=function(r){var e=r.reason,o=r.promise,t=r.detail;!e&&t&&(e=t.reason,o=t.promise),i.unhandledRejection(e,o)},r.addEventListener("unhandledrejection",i._unhandledRejectionHandler)),r[t]=i,i})()},a.prototype.loadFull=function(r,e,t,n,a){var i=function(){var e;if(void 0===r._rollbarPayloadQueue){var o,t,n,i;for(e=new Error("rollbar.js did not load");o=r._rollbarShimQueue.shift();)for(n=o.args,i=0;i<n.length;++i)if(t=n[i],"function"==typeof t){t(e);break}}"function"==typeof a&&a(e)},l=!1,c=e.createElement("script"),p=e.getElementsByTagName("script")[0],d=p.parentNode;c.crossOrigin="",c.src=n.rollbarJsUrl,c.async=!t,c.onload=c.onreadystatechange=o(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){c.onload=c.onreadystatechange=null;try{d.removeChild(c)}catch(r){}l=!0,i()}}),d.insertBefore(c,p)},a.prototype.wrap=function(r,e){try{var o;if(o="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(e){throw"string"==typeof e&&(e=new String(e)),e._rollbarContext=o()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e,e}},r._wrapped._isWrap=!0;for(var t in r)r.hasOwnProperty(t)&&(r._wrapped[t]=r[t])}return r._wrapped}catch(n){return r}};for(var p="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError,unhandledRejection".split(","),d=0;d<p.length;++d)a.prototype[p[d]]=i(p[d]);r.exports={Rollbar:a,_rollbarWindowOnError:t}},function(r,e){"use strict";r.exports=function(r,e){return function(o){if(!o&&!window._rollbarInitialized){var t=window.RollbarNotifier,n=e||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,t.processPayloads()}}}}]);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link class="codestyle" rel="stylesheet" href="./css/highlight/railscasts.css" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+
+    <script type="text/javascript">
+			hljs.configure({
+				tabReplace: '    '
+			});
+			hljs.initHighlightingOnLoad();
+    </script>
+
+    <script src="./js/kbox.min.js"></script>
+
+</head>
+
+<body>
+
+<a href="https://github.com/konfer-be/kbox" class="github-corner">
+    <svg class="github-svg" width="80" height="80" viewBox="0 0 250 250"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+</a>
+
+<nav>
+    <a href="https://lab.konfer.be/developpement/creer-une-lightbox-en-javascript.html">Back to the article</a>
+</nav>
+
+<header>
+    <h1>Kbox.js</h1>
+    <span class="text--slogan">Vanilla.js lightbox system</span>
+    <a class="button--download" href="https://github.com/konfer-be/kbox/archive/master.zip" target="_blank">
+        <span class="btn--txt"><i class="icon-download"></i> Download</span>
+        <span class="btn--bg_hidden"></span>
+    </a>
+</header>
+
+<div id="wrapper">
+
+    <div class="kbox-demo-wrapper">
+        <a class="kbox" data-kbox="Javascript" href="./img/item-3.jpg">
+            <img src="./img/item-3.jpg" class="kbox-demo-thumbnail" alt="Javascript wallpaper 1" />
+        </a>
+
+        <a class="kbox" data-kbox="Javascript" href="./img/item-2.jpg">
+            <img src="./img/item-2.jpg" class="kbox-demo-thumbnail"  alt="Javascript wallpaper 2" />
+        </a>
+
+        <a class="kbox" data-kbox="Node" href="./img/item-5.png">
+            <img src="./img/item-5.png" class="kbox-demo-thumbnail"  alt="Node.js community" />
+        </a>
+
+        <a class="kbox" data-kbox="Javascript" href="./img/item-3.png">
+            <img src="./img/item-3.png" class="kbox-demo-thumbnail"  alt="Javascript tools" />
+        </a>
+
+    </div>
+
+</div>
+
+<section class="wrapper">
+
+    <h2><i class="icon-plug"></i> Installation</h2>
+
+    <p>Obvious install with bower (deprecated)</p>
+
+    <pre>
+    <code class="console">
+$ bower install kbox --save
+    </code></pre>
+
+    <p>Also with yarn </p>
+
+    <pre>
+    <code class="console">
+$ yarn add kbox --save
+    </code></pre>
+
+    <p>Or with npm </p>
+
+    <pre>
+    <code class="console">
+$ npm install kbox --save
+    </code></pre>
+
+    <h2><i class="icon-info"></i> How to use ?</h2>
+
+    <p>In your HTML page, between &lt;head&gt; tags, import CSS code from <em>css/kbox.css</em></p>
+
+    <pre>
+    <code class="html">
+&lt;link href="css/kbox.css" rel="stylesheet" type="text/css" media="screen" /&gt;
+    </code>
+</pre>
+
+    <p>Next, import Javascript file <em>js/kbox.min.js</em> :</p>
+
+    <pre>
+    <code class="html">
+&lt;script type="text/javascript" src="js/kbox.min.js"&gt;&lt;/script&gt;
+    </code>
+</pre>
+
+    <p>Puts the <code>kbox</code> class on the links where you will place your images, and replace data attributes values with your own values :</p>
+
+    <ul>
+        <li><em>data-kox:</em> as the gallery collection name of each image.</li>
+    </ul>
+
+    <pre>
+    <code class="html">
+&lt;a class="kbox" data-kbox="Travels"&gt; &lt;img src="url-to-your-img.jpg" alt="" /&gt; &lt;a&gt;
+    </code>
+</pre>
+
+    <p>Finally, initialize the plugin at DOM ready :</p>
+
+    <pre>
+    <code class="javascript">
+kbox({});
+    </code>
+</pre>
+
+    <h2><i class="icon-cog-alt"></i> Options</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Definition</th>
+            <th>Values</th>
+            <th>Default</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>lang</td>
+            <td>string</td>
+            <td>Catalog lang to use</td>
+            <td>'fr'|'en'|'de'|'es'|'it'|'nl'|'pl'|'ru'</td>
+            <td>'fr'</td>
+        </tr>
+        <tr>
+            <td>animationSpeed</td>
+            <td>int</td>
+            <td>Animation speed to transitions between each image</td>
+            <td>*</td>
+            <td>750</td>
+        </tr>
+        <tr>
+            <td>keyboard</td>
+            <td>boolean</td>
+            <td>Allow the keyboard navigation into modal window</td>
+            <td>true|false</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td>titles</td>
+            <td>boolean</td>
+            <td>Display titles attributes</td>
+            <td>true|false</td>
+            <td>true</td>
+        </tr>
+        <tr>
+            <td>afterOpening</td>
+            <td>function</td>
+            <td>Callback fired after modal opening</td>
+            <td>function</td>
+            <td>function(e) { }</td>
+        </tr>
+        <tr>
+            <td>afterTransition</td>
+            <td>function</td>
+            <td>Callback fired after each image transition</td>
+            <td>function</td>
+            <td>function(e) { }</td>
+        </tr>
+        <tr>
+            <td>afterClosing</td>
+            <td>function</td>
+            <td>Callback fired after modal closing</td>
+            <td>function</td>
+            <td>function(e) { }</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<script type="text/javascript">
+	window.kbox({ lang : 'fr' });
+</script>
+<footer>
+
+    <p>
+        <a href="https://www.linkedin.com/company-beta/18140230" target="_blank" class="link-icon">
+            <i class="icon-linkedin"></i>
+        </a>
+        <a href="https://github.com/konfer-be" target="_blank" class="link-icon">
+            <i class="icon-github-circled"></i>
+        </a>
+        <a href="https://www.facebook.com/konferstudio/" target="_blank" class="link-icon">
+            <i class="icon-facebook"></i>
+        </a>
+        <a href="https://twitter.com/konferstudio" target="_blank" class="link-icon">
+            <i class="icon-twitter"></i>
+        </a>
+    </p>
+
+    <p>
+        &copy; 2018 Konfer
+        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">kbox.js</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.konfer.be" rel="cc:morePermissions">https://www.konfer.be</a>.
+    </p>
+
+
+</footer>
+
+</body>
+
+</html>

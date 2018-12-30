@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Thasadith');
+
+#kbox-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #000;
+    /* IE 8 not support opacity */
+  background: rgba(0, 0, 0, .8);
+    /* IE 8 not support rgba */
+  filter: alpha(opacity=80);
+}
+
+#kbox-modal {
+  font-family: Thasadith, Helvetica, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  position: fixed;
+  z-index: 10000;
+  top: 5%;
+  left: 5%;
+  display: none;
+  opacity: 0;
+}
+
+#kbox-modal img {
+  z-index: 10000;
+  margin: 0 0 5px 0;
+  border: 5px solid #fff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
+}
+
+#kbox-nav--prev {
+  left: 15px;
+  text-align: left;
+}
+
+#kbox-nav--next {
+  right: 15px;
+  text-align: right;
+}
+
+#kbox-nav--next span {
+  right: 0;
+}
+
+#kbox-info {
+  line-height: 20px;
+  height: 20px;
+  color: #fff;
+  background: transparent;
+}
+
+#kbox-info--context {
+  font-size: .8em;
+  display: block;
+  float: left;
+  width: auto;
+  padding: 10px;
+  color: #999;
+  background: rgba(0, 0, 0, .6);
+}
+
+#kbox-info--theme {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#kbox-info--theme:after {
+  content: ' - ';
+}
+
+#kbox-info--alt {
+  font-size: .9em;
+  font-style: italic;
+  display: block;
+  float: right;
+  width: auto;
+  padding: 10px;
+  text-align: right;
+  color: #fff;
+  background: rgba(0, 0, 0, .6);
+}
+
+#kbox-close {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 25px;
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: -10px -10px 0 0;
+  text-align: center;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #000;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, .8);
+}
+
+#kbox-close:hover {
+  cursor: pointer;
+  transition: all .4s ease-in;
+  background: #666;
+}
+
+.kbox-nav {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 101%;
+    /* IE8 bugfix calc() not supported */
+  width: calc(100% + 10px);
+  width: 25%;
+  height: calc(100% - 50px);
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.kbox-nav:hover {
+  cursor: pointer;
+  transition: all .75s ease-in;
+  opacity: 1;
+}
+
+.kbox-nav span {
+  font-size: 2rem;
+  font-weight: bold;
+  position: absolute;
+  top: 45%;
+  display: block;
+  padding: 5px 0 0 0;
+  color: #fff;
+  background: #000;
+}

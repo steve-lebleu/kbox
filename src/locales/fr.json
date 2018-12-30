@@ -1,0 +1,7 @@
+{
+  "display" : "Afficher",
+  "close" : "Fermer",
+  "previous" : "Image précédente",
+  "next" : "Image suivante",
+  "position" : "Image {{current}} sur {{total}}"
+}
