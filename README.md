@@ -58,11 +58,11 @@ Following options are available :
 * **animationSpeed**: int, speed of the transition animation (ms)
 * **keyboard**: boolean, using keyboard navigation
 * **titles**: boolean, display titles attributes
-* **afterOpening**: function(e), function, callback fired before display of image
-* **afterTransition**: function(e), function, callback fired after display of image
-* **afterClosing**: function(e), function, callback fired after display of image
+* **afterOpening**: function(e), function, callback fired after modal opening
+* **afterTransition**: function(e), function, callback fired after image display transition
+* **afterClosing**: function(e), function, callback fired after modal closing
                 
 ## Dependencies 
 
-The kbox script use [velocity.js](http://velocityjs.org/) to display progressive animations. If you already uses velocity.js in your project, you can use the kbox.min.js file, which no contains velocity.js. 
-If you don't, you can use kbox.pack.min.js. Enjoy !
+Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file.  Else, use kbox.pack.min.js. 
+Enjoy !
