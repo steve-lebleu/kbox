@@ -440,6 +440,7 @@ if(typeof(window.kbox) === 'undefined')
 					opened : new Event('modal.opened'),
 					transitioned : new Event('modal.transitioned'),
 					closed : new Event('modal.closed'),
+					exited : new Event('modal.exited')
 				}
 			},
 
@@ -454,6 +455,7 @@ if(typeof(window.kbox) === 'undefined')
 				window.addEventListener('modal.opened', options.afterOpening );
 				window.addEventListener('modal.transitioned', options.afterTransition );
 				window.addEventListener('modal.closed', options.afterClosing );
+				window.addEventListener('modal.exited', close );
 				events.opening(links);
 				options.keyboard && events.keyboard();
 				events.closing();
@@ -542,7 +544,7 @@ if(typeof(window.kbox) === 'undefined')
 							// Escape
 							case 27 :
 
-								close();
+								window.dispatchEvent(events.custom.modal.exited);
 
 								break;
 						}
