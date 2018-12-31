@@ -2908,13 +2908,17 @@ em {
   font-style: normal;
   padding: 1px 3px;
   border-radius: 3px;
-  background: #7f8c8d;
+  background: #e67e22;
   background-clip: 'padding';
   background-clip: 'padding-box';
 }
 
 a {
   text-decoration: none;
+}
+
+a.on--page {
+  color: #e67e22;
 }
 
 table {

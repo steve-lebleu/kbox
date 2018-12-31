@@ -2358,7 +2358,7 @@ pre {
   font-size: 100%; }
 
 em {
-  background: #7f8c8d;
+  background: #e67e22;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -2371,6 +2371,8 @@ em {
 
 a {
   text-decoration: none; }
+  a.on--page {
+    color: #e67e22; }
 
 table {
   font-size: 0.9rem;

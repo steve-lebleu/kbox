@@ -87,7 +87,7 @@ pre {
 }
 
 em {
-  background: $color_4;
+  background: $color_11;
   @include border-radius(3px);
   font-style: normal;
   padding: 1px 3px;
@@ -95,6 +95,9 @@ em {
 
 a {
   text-decoration: none;
+  &.on--page {
+    color: $color_11;
+  }
 }
 
 table {
