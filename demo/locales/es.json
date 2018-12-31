@@ -1,0 +1,8 @@
+{
+  "display": "Pantalla",
+  "close": "Cerrar",
+  "previous": "Imagen anterior",
+  "next": "Siguiente imagen",
+  "position": "Imagen {{current}} en {{total}}"
+}
+

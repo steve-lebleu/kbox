@@ -1,0 +1,7 @@
+{
+  "display" : "Display",
+  "close" : "Close",
+  "previous" : "Previous image",
+  "next" : "Next image",
+  "position" : "Image {{current}} on {{total}}"
+}
