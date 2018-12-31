@@ -60,6 +60,8 @@ If your language is not supported, create your own locale file and do a pull req
 
 Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file instead of kbox.pack.min.js. 
 
+Kbox uses also hody-icons font icon, packaged into the project.
+
 ## Options
 
 Following options are available :
