@@ -1,7 +1,7 @@
 {
-  "name": "konfer-lab",
+  "name": "kbox",
   "version": "1.0.0",
-  "description": "The blog website of konfer https://lab.konfer.be",
+  "description": "Assets management for kbox.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,13 +26,24 @@
     "gulp-sitemap": "^5.1.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-ssh": "^0.7.0",
+    "gulp-terser": "^1.1.6",
     "gulp-uglify": "^3.0.0",
     "gulp-uncss": "^1.0.6",
-    "pump": "^3.0.0"
+    "jasmine-core": "^2.6.1",
+    "jasmine-jquery": "^2.1.1",
+    "karma": "^1.6.0",
+    "karma-chrome-launcher": "^2.1.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-opera-launcher": "^1.0.0",
+    "karma-requirejs": "^1.1.0",
+    "karma-safari-launcher": "^1.0.0",
+    "pump": "^3.0.0",
+    "require.js": "^1.0.0"
   },
   "dependencies": {
     "gulp": "^3.9.1",
-    "gulp-terser": "^1.1.6",
     "susy": "^2.2.14",
     "terser-webpack-plugin": "^1.2.1"
   }

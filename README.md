@@ -62,3 +62,7 @@ Following options are available :
 * **afterTransition**: function(e), function, callback fired after display of image
 * **afterClosing**: function(e), function, callback fired after display of image
                 
+## Dependencies 
+
+The kbox script use [velocity.js](http://velocityjs.org/) to display progressive animations. If you already uses velocity.js in your project, you can use the kbox.min.js file, which no contains velocity.js. 
+If you don't, you can use kbox.pack.min.js. Enjoy !

@@ -8,6 +8,17 @@ if(typeof(window.kbox) === 'undefined')
 	const kbox = function() {
 
 		/**
+		 *
+		 * @type {{orientation: {LANDSCAPE: string, PORTRAIT: string}}}
+		 */
+		let enums = {
+			orientation : {
+				LANDSCAPE : 'LANDSCAPE',
+				PORTRAIT : 'PORTRAIT'
+			}
+		};
+
+		/**
 		 * Body HTMLElement
 		 *
 		 * @type {Element}
@@ -15,11 +26,39 @@ if(typeof(window.kbox) === 'undefined')
 		let body = null;
 
 		/**
+		 * #kbox-overlay HTMLElement
+		 *
+		 * @type {Element}
+		 */
+		let	overlay = null;
+
+		/**
 		 * #kbox-modal HTMLElement
 		 *
 		 * @type {Element}
 		 */
 		let	modal = null;
+
+		/**
+		 * #kbox-info--theme HTMLElement
+		 *
+		 * @type {Element}
+		 */
+		let	theme = null;
+
+		/**
+		 * #kbox-info--quantities HTMLElement
+		 *
+		 * @type {Element}
+		 */
+		let	quantities = null;
+
+		/**
+		 * #kbox-info--alt HTMLElement
+		 *
+		 * @type {Element}
+		 */
+		let	alt = null;
 
 		/**
 		 * JSON locale object
@@ -61,9 +100,9 @@ if(typeof(window.kbox) === 'undefined')
 		/**
 		 * Screen size default properties
 		 *
-		 * @type {{width: number, height: number}}
+		 * @type {{width: number, height: number, orientation: string}}
 		 */
-		let	screen = { width : window.innerWidth * 0.925 , height : window.innerHeight * 0.925 };
+		let	screen = { width : window.innerWidth * 0.925 , height : window.innerHeight * 0.925, orientation : enums.orientation.LANDSCAPE };
 
 		/**
 		 * Script options
@@ -87,32 +126,48 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const init = async function(opt) {
 
-			options = opt || options;
+			try {
 
-			catalog = await i18n(options.lang);
+				options = Object.assign(options, opt);
 
-			body = document.getElementsByTagName('body')[0];
+				catalog = await i18n(options.lang);
 
-			if(!body) throw new Error('Body tag not found');
+				if(window.innerWidth < window.innerHeight) screen.orientation = enums.orientation.PORTRAIT;
 
-			let links = document.querySelectorAll('.kbox'),
-					numberOfLinks = links.length;
+				body = document.getElementsByTagName('body')[0];
 
-			if(!links.length) return false;
+				if(!body) return false;
 
-			for(let i = 0 ; i <= numberOfLinks -1 ; i++)
-			{
-				if(options.titles)
+				let links = document.querySelectorAll('.kbox'),
+						numberOfLinks = links.length;
+
+				if(!links.length) return false;
+
+				for(let i = 0 ; i <= numberOfLinks -1 ; i++)
 				{
-					links[i].title = catalog['display'];
+					if(options.titles)
+					{
+						links[i].title = catalog['display'];
+					}
+					collect(links[i]);
 				}
-				collect(links[i]);
+
+				body.appendChild( DOM.overlay() );
+				body.appendChild( DOM.modal() );
+
+				overlay 		= document.getElementById('kbox-overlay');
+				modal 			= document.getElementById('kbox-modal');
+				theme 			= document.getElementById('kbox-info--theme');
+				alt 				= document.getElementById('kbox-info--alt');
+				quantities 	= document.getElementById('kbox-info--quantities');
+
+				events.init(links);
+			}
+			catch(e)
+			{
+				alert(e.message);
 			}
 
-			body.appendChild( DOM.overlay() );
-			body.appendChild( DOM.modal() );
-
-			events.init(links);
 		};
 
 		/**
@@ -144,30 +199,32 @@ if(typeof(window.kbox) === 'undefined')
 		const resize = function(img) {
 
 			// Si l'image est plus large ou plus haute que l'écran
-			let ratio = { height : 1, width : 1 };
+			let ratio = 1, orientation = img.width < img.height ? enums.orientation.PORTRAIT : enums.orientation.LANDSCAPE;
 
 			// Width AND height most higher that screen
 			if(img.width > screen.width && img.height > screen.height)
 			{
-				let dw = img.width - screen.width;
-				let dh = img.height - screen.height;
+				let dw = parseFloat( (screen.width / img.width) * 0.80 );
+				let dh = parseFloat( (screen.height / img.height) * 0.80 );
 
 				// We set the difference from width or height according to the most higher value
-				let difference = dw - dh >= 0 ? dw : dh;
-
-				ratio = { height : 1 - parseFloat( '0.' + difference ) , width : 1 - parseFloat( '0.' + difference ) };
+				ratio = dw - dh >= 0 ? dw : dh;
 			}
-			// Width OR height most higher that screen
-			else if(img.width > screen.width || img.height > screen.height)
+			// Width most higher that screen
+			else if(img.width > screen.width)
 			{
-				// We set the difference from width or height
-				let difference = img.width > screen.width ? img.width - screen.width : img.height - screen.height;
-
-				ratio = { height : 1 - parseFloat( '0.' + difference ) , width : 1 - parseFloat( '0.' + difference ) };
+				// We set the difference according to the property who is most higher than the screen
+				ratio = parseFloat( (screen.width / img.width) * 0.80 );
+			}
+			// Height most higher that screen
+			else if(img.height > screen.height)
+			{
+				// We set the difference according to the property who is most higher than the screen
+				ratio = parseFloat( (screen.height / img.height) * 0.80 );
 			}
 
-			img.width = img.width * ratio.width;
-			img.height = img.height * ratio.height;
+			img.width = img.width * ratio.toFixed(2);
+			img.height = img.height * ratio.toFixed(2);
 
 			return img;
 		};
@@ -200,7 +257,6 @@ if(typeof(window.kbox) === 'undefined')
 		 * The role of this method is to update internal properties
 		 *
 		 * @param e
-
 		 */
 		const contextualize = function(e) {
 
@@ -225,25 +281,22 @@ if(typeof(window.kbox) === 'undefined')
 		};
 
 		/**
-		 *
+		 * Fill textual contents (gallery name, position, alt attribute, ...)
 		 */
 		const fill = function() {
 
 			let image = modal.getElementsByTagName('img');
-			let theme = document.getElementById('kbox-info--theme');
-			let alt = document.getElementById('kbox-info--alt');
-			let quantities = document.getElementById('kbox-info--quantities');
 
 			if(!image.length) throw new Error('Img tag not found');
 
-			image[0].src = galleries[gallery].pictures[pointer].src;
-			image[0].alt = galleries[gallery].pictures[pointer].alt;
+			image[0].src 		= galleries[gallery].pictures[pointer].src;
+			image[0].alt 		= galleries[gallery].pictures[pointer].alt;
 			image[0].height = galleries[gallery].pictures[pointer].height;
-			image[0].width = galleries[gallery].pictures[pointer].width;
+			image[0].width 	= galleries[gallery].pictures[pointer].width;
 
-			theme.textContent = gallery;
-			quantities.textContent = catalog.position.replace(/{{current}}/i, pointer + 1).replace(/{{total}}/i, galleries[gallery].pictures.length);
-			alt.textContent = galleries[gallery].pictures[pointer].alt;
+			theme.textContent 			= gallery;
+			quantities.textContent 	= catalog.position.replace(/{{current}}/i, ( pointer + 1 ).toString() ).replace(/{{total}}/i, ( galleries[gallery].pictures.length ) .toString() );
+			alt.textContent 				= galleries[gallery].pictures[pointer].alt;
 		};
 
 		/**
@@ -260,8 +313,8 @@ if(typeof(window.kbox) === 'undefined')
 			Velocity(document.getElementById('kbox-overlay'), { opacity: 1 , display: 'block' , duration: 200 });
 
 			Velocity(modal, {
-				top : ( screen.height - galleries[gallery].pictures[pointer].height ) / 2 ,
-				left : ( screen.width - galleries[gallery].pictures[pointer].width ) / 2,
+				top : get.position().y,
+				left : get.position().x,
 				opacity: 1,
 				display: 'block',
 				duration: options.animationSpeed
@@ -280,9 +333,6 @@ if(typeof(window.kbox) === 'undefined')
 
 			pointer = 0, state = false, gallery = '';
 
-			let overlay = document.getElementById('kbox-overlay');
-			let modal = document.getElementById('kbox-modal');
-
 			Velocity(overlay, { display: 'none', opacity: 0, duration: 250 } );
 			Velocity(modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
 		};
@@ -292,15 +342,13 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const transition = function() {
 
-			let modal = document.getElementById('kbox-modal');
-
 			Velocity(modal, { display: 'none', opacity: 0, duration: 250 }, function() {
 
 					fill();
 
 					Velocity(modal, {
-						top : ( screen.height - galleries[gallery].pictures[pointer].height ) / 2 ,
-						left : ( screen.width - galleries[gallery].pictures[pointer].width ) / 2,
+						top : get.position().y,
+						left : get.position().x,
 						opacity: 1,
 						display: 'block',
 						duration: options.animationSpeed
@@ -360,6 +408,18 @@ if(typeof(window.kbox) === 'undefined')
 			 */
 			gallery: function(a) {
 				return a.getAttribute('data-kbox') !== undefined ? a.getAttribute('data-kbox') : 'isolated';
+			},
+
+			/**
+			 * Get the positions coordinates where place the modal
+			 *
+			 * @returns {{x: number, y: number}}
+			 */
+			position: function() {
+				return {
+					x : parseFloat( ( ( window.innerWidth - galleries[gallery].pictures[pointer].width ) / 2 ) -10 ),
+					y : parseFloat( ( ( window.innerHeight - galleries[gallery].pictures[pointer].height ) / 2 ) - 10 )
+				};
 			}
 		};
 
@@ -376,6 +436,7 @@ if(typeof(window.kbox) === 'undefined')
 			custom : {
 				modal : {
 					contextualized : new Event('modal.contextualized'),
+					pointed : new Event('modal.pointed'),
 					opened : new Event('modal.opened'),
 					transitioned : new Event('modal.transitioned'),
 					closed : new Event('modal.closed'),
@@ -389,6 +450,7 @@ if(typeof(window.kbox) === 'undefined')
 			 */
 			init: function(links) {
 				window.addEventListener('modal.contextualized', open );
+				window.addEventListener('modal.pointed', transition );
 				window.addEventListener('modal.opened', options.afterOpening );
 				window.addEventListener('modal.transitioned', options.afterTransition );
 				window.addEventListener('modal.closed', options.afterClosing );
@@ -456,7 +518,7 @@ if(typeof(window.kbox) === 'undefined')
 									pointer--;
 								}
 
-								transition();
+								window.dispatchEvent(events.custom.modal.pointed);
 
 								break;
 
@@ -473,7 +535,7 @@ if(typeof(window.kbox) === 'undefined')
 									pointer++;
 								}
 
-								transition();
+								window.dispatchEvent(events.custom.modal.pointed);
 
 								break;
 
@@ -503,11 +565,9 @@ if(typeof(window.kbox) === 'undefined')
 
 					item.addEventListener('click', function(e) {
 
-						e = e || window.event;
-
 						e.preventDefault();
 
-						if(e.target.id === 'kbox-nav-prev')
+						if(e.target.id === 'kbox-nav--prev')
 						{
 							if(pointer - 1 < 0)
 							{
@@ -530,7 +590,7 @@ if(typeof(window.kbox) === 'undefined')
 							}
 						}
 
-						transition();
+						window.dispatchEvent(events.custom.modal.pointed);
 
 					}, false);
 				});
