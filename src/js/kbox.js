@@ -1,3 +1,18 @@
+/**
+ * Kbox.js is a free script that implements modal display for images
+ *
+ * Copyright (C) 2018  Lebleu Steve <info@konfer.be>
+ *
+ * URL : https://demo.konfer.be/kbox/
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the Creative Commons Licence.
+ *
+ * @author S. Lebleu
+ * @update 02/01/2019
+ *
+ **/
+
 'use strict';
 
 if(typeof(window.kbox) === 'undefined')
