@@ -45,6 +45,9 @@ footer {
   padding: 30px 0 15px 0;
   margin: 60px auto 0 auto;
   font-size: 0.8rem;
+  @media (max-width: 480px) {
+    padding: 30px 10px 15px 10px;
+  }
   & p {
     &:first-child {
       margin: 50px auto 75px auto;
@@ -58,6 +61,9 @@ footer {
     }
     &.link-icon {
       font-size: 5rem;
+      @media (max-width: 480px) {
+        font-size: 2.75rem;
+      }
     }
   }
 }
@@ -70,6 +76,9 @@ h1 {
   color: $color_7;
   text-transform: uppercase;
   font-family: $font-alt;
+  @media (max-width: 480px) {
+    font-size: 3.5rem;
+  }
 }
 
 h2 {
@@ -80,6 +89,9 @@ h2 {
   text-align: center;
   margin: 70px 0 110px 0;
   font-family: $font-alt;
+  @media (max-width: 480px) {
+    font-size: 2.05rem;
+  }
 }
 
 pre {
@@ -109,6 +121,11 @@ table {
       font-size: 1.2rem;
       text-transform: uppercase;
       color: $color_9;
+      @media (max-width: 480px) {
+        &:nth-child(2), &:nth-child(4), &:nth-child(5) {
+          display: none;
+        }
+      }
     }
   }
   & tbody {
@@ -124,7 +141,13 @@ table {
         &:first-child {
           font-style: italic;
         }
+        @media (max-width: 480px) {
+          &:nth-child(2), &:nth-child(4), &:nth-child(5) {
+            display: none;
+          }
+        }
       }
+
     }
   }
 }

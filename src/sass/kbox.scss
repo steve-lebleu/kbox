@@ -77,6 +77,9 @@
       font-size: 0.9em;
       font-style: italic;
       background: rgba(0, 0, 0, 0.6);
+      @media (max-width: 480px) {
+        max-width: 170px;
+      }
     }
   }
   &-close {

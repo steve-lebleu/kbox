@@ -2325,6 +2325,9 @@ footer {
   padding: 30px 0 15px 0;
   margin: 60px auto 0 auto;
   font-size: 0.8rem; }
+  @media (max-width: 480px) {
+    footer {
+      padding: 30px 10px 15px 10px; } }
   footer p:first-child {
     margin: 50px auto 75px auto; }
   footer a {
@@ -2335,6 +2338,9 @@ footer {
       color: #a85913; }
     footer a.link-icon {
       font-size: 5rem; }
+      @media (max-width: 480px) {
+        footer a.link-icon {
+          font-size: 2.75rem; } }
 
 h1 {
   font-size: 5.5em;
@@ -2344,6 +2350,9 @@ h1 {
   color: #89867E;
   text-transform: uppercase;
   font-family: "Montserrat", Helvetica, Geneva, Tahoma, sans-serif; }
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 3.5rem; } }
 
 h2 {
   color: #89867E;
@@ -2353,6 +2362,9 @@ h2 {
   text-align: center;
   margin: 70px 0 110px 0;
   font-family: "Montserrat", Helvetica, Geneva, Tahoma, sans-serif; }
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 2.05rem; } }
 
 pre {
   font-size: 100%; }
@@ -2382,6 +2394,9 @@ table {
     font-size: 1.2rem;
     text-transform: uppercase;
     color: #777; }
+    @media (max-width: 480px) {
+      table thead th:nth-child(2), table thead th:nth-child(4), table thead th:nth-child(5) {
+        display: none; } }
   table tbody tr:nth-child(even) {
     background: #333333; }
   table tbody tr:nth-child(odd) {
@@ -2390,6 +2405,9 @@ table {
     padding: 15px 5px; }
     table tbody tr td:first-child {
       font-style: italic; }
+    @media (max-width: 480px) {
+      table tbody tr td:nth-child(2), table tbody tr td:nth-child(4), table tbody tr td:nth-child(5) {
+        display: none; } }
 
 ul li {
   margin: 15px 0; }

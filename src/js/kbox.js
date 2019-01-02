@@ -19,48 +19,6 @@ if(typeof(window.kbox) === 'undefined')
 		};
 
 		/**
-		 * Body HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let body = null;
-
-		/**
-		 * #kbox-overlay HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let	overlay = null;
-
-		/**
-		 * #kbox-modal HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let	modal = null;
-
-		/**
-		 * #kbox-info--theme HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let	theme = null;
-
-		/**
-		 * #kbox-info--quantities HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let	quantities = null;
-
-		/**
-		 * #kbox-info--alt HTMLElement
-		 *
-		 * @type {Element}
-		 */
-		let	alt = null;
-
-		/**
 		 * JSON locale object
 		 *
 		 * @type {{}}
@@ -134,9 +92,9 @@ if(typeof(window.kbox) === 'undefined')
 
 				if(window.innerWidth < window.innerHeight) screen.orientation = enums.orientation.PORTRAIT;
 
-				body = document.getElementsByTagName('body')[0];
+				DOM.body = document.getElementsByTagName('body')[0];
 
-				if(!body) return false;
+				if(!DOM.body) return false;
 
 				let links = document.querySelectorAll('.kbox'),
 						numberOfLinks = links.length;
@@ -152,15 +110,7 @@ if(typeof(window.kbox) === 'undefined')
 					collect(links[i]);
 				}
 
-				body.appendChild( DOM.overlay() );
-				body.appendChild( DOM.modal() );
-
-				overlay 		= document.getElementById('kbox-overlay');
-				modal 			= document.getElementById('kbox-modal');
-				theme 			= document.getElementById('kbox-info--theme');
-				alt 				= document.getElementById('kbox-info--alt');
-				quantities 	= document.getElementById('kbox-info--quantities');
-
+				DOM.init();
 				events.init(links);
 			}
 			catch(e)
@@ -198,29 +148,29 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const resize = function(img) {
 
-			// Si l'image est plus large ou plus haute que l'écran
-			let ratio = 1, orientation = img.width < img.height ? enums.orientation.PORTRAIT : enums.orientation.LANDSCAPE;
+			// Ratio = normal zoom value, adjust = adaptation as small of
+			let ratio = 1, adjust = screen.orientation === enums.orientation.PORTRAIT ? 0.90 : 0.80;
 
 			// Width AND height most higher that screen
 			if(img.width > screen.width && img.height > screen.height)
 			{
-				let dw = parseFloat( (screen.width / img.width) * 0.80 );
-				let dh = parseFloat( (screen.height / img.height) * 0.80 );
+				let dw = parseFloat( (screen.width / img.width) * adjust );
+				let dh = parseFloat( (screen.height / img.height) * adjust );
 
 				// We set the difference from width or height according to the most higher value
-				ratio = dw - dh >= 0 ? dw : dh;
+				ratio = dw - dh <= 0 ? dw : dh;
 			}
 			// Width most higher that screen
 			else if(img.width > screen.width)
 			{
 				// We set the difference according to the property who is most higher than the screen
-				ratio = parseFloat( (screen.width / img.width) * 0.80 );
+				ratio = parseFloat( (screen.width / img.width) * adjust );
 			}
 			// Height most higher that screen
 			else if(img.height > screen.height)
 			{
 				// We set the difference according to the property who is most higher than the screen
-				ratio = parseFloat( (screen.height / img.height) * 0.80 );
+				ratio = parseFloat( (screen.height / img.height) * adjust );
 			}
 
 			img.width = img.width * ratio.toFixed(2);
@@ -285,7 +235,7 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const fill = function() {
 
-			let image = modal.getElementsByTagName('img');
+			let image = DOM.modal.getElementsByTagName('img');
 
 			if(!image.length) throw new Error('Img tag not found');
 
@@ -294,9 +244,9 @@ if(typeof(window.kbox) === 'undefined')
 			image[0].height = galleries[gallery].pictures[pointer].height;
 			image[0].width 	= galleries[gallery].pictures[pointer].width;
 
-			theme.textContent 			= gallery;
-			quantities.textContent 	= catalog.position.replace(/{{current}}/i, ( pointer + 1 ).toString() ).replace(/{{total}}/i, ( galleries[gallery].pictures.length ) .toString() );
-			alt.textContent 				= galleries[gallery].pictures[pointer].alt;
+			DOM.theme.textContent 			= gallery;
+			DOM.quantities.textContent 	= catalog.position.replace(/{{current}}/i, ( pointer + 1 ).toString() ).replace(/{{total}}/i, ( galleries[gallery].pictures.length ) .toString() );
+			DOM.alt.textContent 				= galleries[gallery].pictures[pointer].alt;
 		};
 
 		/**
@@ -310,9 +260,9 @@ if(typeof(window.kbox) === 'undefined')
 
 			fill();
 
-			Velocity(document.getElementById('kbox-overlay'), { opacity: 1 , display: 'block' , duration: 200 });
+			Velocity(DOM.overlay, { opacity: 1 , display: 'block' , duration: 200 });
 
-			Velocity(modal, {
+			Velocity(DOM.modal, {
 				top : get.position().y,
 				left : get.position().x,
 				opacity: 1,
@@ -331,10 +281,10 @@ if(typeof(window.kbox) === 'undefined')
 
 			e.preventDefault();
 
-			pointer = 0, state = false, gallery = '';
+			pointer = 0; state = false; gallery = '';
 
-			Velocity(overlay, { display: 'none', opacity: 0, duration: 250 } );
-			Velocity(modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
+			Velocity(DOM.overlay, { display: 'none', opacity: 0, duration: 250 } );
+			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
 		};
 
 		/**
@@ -342,11 +292,11 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const transition = function() {
 
-			Velocity(modal, { display: 'none', opacity: 0, duration: 250 }, function() {
+			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() {
 
 					fill();
 
-					Velocity(modal, {
+					Velocity(DOM.modal, {
 						top : get.position().y,
 						left : get.position().x,
 						opacity: 1,
@@ -394,6 +344,50 @@ if(typeof(window.kbox) === 'undefined')
 		};
 
 		/**
+		 * Setters sub namespace
+		 *
+		 * @type {{cursor: {increase: increase, decrease: decrease}}}
+		 */
+		const set = {
+
+			/**
+			 *
+			 */
+			cursor: {
+
+				/**
+				 *
+				 */
+				increase : function() {
+					if(pointer + 1 > galleries[gallery].pictures.length - 1)
+					{
+						pointer = 0;
+					}
+					else
+					{
+						pointer++
+					}
+					window.dispatchEvent(events.custom.modal.pointed);
+				},
+
+				/**
+				 *
+				 */
+				decrease : function() {
+					if(pointer - 1 < 0)
+					{
+						pointer = galleries[gallery].pictures.length - 1;
+					}
+					else
+					{
+						pointer--
+					}
+					window.dispatchEvent(events.custom.modal.pointed);
+				},
+			}
+		};
+
+		/**
 		 * Sub namespace getters
 		 *
 		 * @type {{gallery: (function(*): string)}}
@@ -417,7 +411,7 @@ if(typeof(window.kbox) === 'undefined')
 			 */
 			position: function() {
 				return {
-					x : parseFloat( ( ( window.innerWidth - galleries[gallery].pictures[pointer].width ) / 2 ) -10 ),
+					x : parseFloat( ( ( window.innerWidth - galleries[gallery].pictures[pointer].width ) / 2 ) - 10 ),
 					y : parseFloat( ( ( window.innerHeight - galleries[gallery].pictures[pointer].height ) / 2 ) - 10 )
 				};
 			}
@@ -450,16 +444,29 @@ if(typeof(window.kbox) === 'undefined')
 			 * @param links
 			 */
 			init: function(links) {
+
 				window.addEventListener('modal.contextualized', open );
 				window.addEventListener('modal.pointed', transition );
 				window.addEventListener('modal.opened', options.afterOpening );
 				window.addEventListener('modal.transitioned', options.afterTransition );
 				window.addEventListener('modal.closed', options.afterClosing );
 				window.addEventListener('modal.exited', close );
-				events.opening(links);
+
 				options.keyboard && events.keyboard();
+
+				events.opening(links);
 				events.closing();
-				events.navigation();
+
+				// If touchstart supported (smart phones, tablets, tactile screens, ...)
+				if('ontouchstart' in document.documentElement)
+				{
+					events.touch();
+				}
+				// Else, we fallback with navigation by click
+				else
+				{
+					events.navigation();
+				}
 			},
 
 			/**
@@ -497,7 +504,7 @@ if(typeof(window.kbox) === 'undefined')
 			 */
 			keyboard : function() {
 
-				body.addEventListener('keyup', function(e) {
+				DOM.body.addEventListener('keyup', function(e) {
 
 					e.preventDefault();
 
@@ -511,16 +518,7 @@ if(typeof(window.kbox) === 'undefined')
 							case 37 :
 							case 100 :
 
-								if(pointer - 1 < 0)
-								{
-									pointer = galleries[gallery].pictures.length - 1;
-								}
-								else
-								{
-									pointer--;
-								}
-
-								window.dispatchEvent(events.custom.modal.pointed);
+								set.cursor.decrease();
 
 								break;
 
@@ -528,16 +526,7 @@ if(typeof(window.kbox) === 'undefined')
 							case 39 :
 							case 102 :
 
-								if(pointer + 1 > galleries[gallery].pictures.length - 1)
-								{
-									pointer = 0;
-								}
-								else
-								{
-									pointer++;
-								}
-
-								window.dispatchEvent(events.custom.modal.pointed);
+								set.cursor.increase();
 
 								break;
 
@@ -571,132 +560,199 @@ if(typeof(window.kbox) === 'undefined')
 
 						if(e.target.id === 'kbox-nav--prev')
 						{
-							if(pointer - 1 < 0)
-							{
-								pointer = galleries[gallery].pictures.length - 1;
-							}
-							else
-							{
-								pointer--;
-							}
+							set.cursor.decrease();
 						}
 						else
 						{
-							if(pointer + 1 > galleries[gallery].pictures.length - 1)
-							{
-								pointer = 0;
-							}
-							else
-							{
-								pointer++;
-							}
+							set.cursor.increase();
 						}
-
-						window.dispatchEvent(events.custom.modal.pointed);
 
 					}, false);
 				});
+			},
+
+			/**
+			 * Manage the navigation by touch event for screens who support the feature
+			 */
+			touch: function() {
+
+				let x = 0, y = 0, adjust = 20;
+
+				DOM.modal.addEventListener('touchstart',  function(e) {
+					if(e.changedTouches) x = e.changedTouches[0].screenX; y = e.changedTouches[0].screenY;
+				}, false);
+
+				DOM.modal.addEventListener('touchend',  function(e) {
+
+					if(e.changedTouches && e.changedTouches[0].screenX + adjust > x + adjust)
+					{
+						set.cursor.decrease();
+					}
+					else if(e.changedTouches && e.changedTouches[0].screenX + adjust < x + adjust)
+					{
+						set.cursor.increase();
+					}
+
+				}, false);
 			}
 		};
 
 		/**
 		 * Sub namespace DOM management
 		 *
-		 * @type {{navigation: (function(*=): HTMLElement), overlay: (function(): HTMLElement), modal: (function(): HTMLElement)}}
+		 * @type {{overlay: null, build: {navigation: (function(*=): HTMLElement), overlay: (function(): HTMLElement), modal: (function(): HTMLElement)}, quantities: null, alt: null, theme: null, body: null, modal: null}}
 		 */
 		const DOM = {
 
 			/**
-			 * Build the HTML tags of the modal window overlay
+			 * Body HTMLElement
 			 *
-			 * @returns {HTMLElement}
 			 */
-			overlay: function () {
+			body : null,
 
-				let node = document.createElement('div');
-				node.setAttribute('id', 'kbox-overlay');
-				node.setAttribute('class', 'kbox-close--trigger');
-				return node;
+			/**
+			 * #kbox-overlay HTMLElement
+			 *
+			 */
+			overlay : null,
+
+			/**
+			 * #kbox-modal HTMLElement
+			 *
+			 */
+			modal : null,
+
+			/**
+			 * #kbox-info--theme HTMLElement
+			 *
+			 */
+			theme : null,
+
+			/**
+			 * #kbox-info--quantities HTMLElement
+			 *
+			 */
+			quantities : null,
+
+			/**
+			 * #kbox-info--alt HTMLElement
+			 *
+			 */
+			alt : null,
+
+			/**
+			 * Initialize DOM elements
+			 */
+			init: function() {
+
+				DOM.body.appendChild( DOM.build.overlay() );
+				DOM.body.appendChild( DOM.build.modal() );
+
+				DOM.overlay 		= document.getElementById('kbox-overlay');
+				DOM.modal 			= document.getElementById('kbox-modal');
+				DOM.theme 			= document.getElementById('kbox-info--theme');
+				DOM.alt 				= document.getElementById('kbox-info--alt');
+				DOM.quantities 	= document.getElementById('kbox-info--quantities');
 			},
 
 			/**
-			 * Build the HTML tags of the modal window navigation
-			 *
-			 * @param id
-			 * @returns {HTMLElement}
+			 * HTML elements builder
 			 */
-			navigation: function(id) {
-				let navigation = document.createElement('div');
-				navigation.setAttribute('id', id);
-				navigation.setAttribute('class', 'kbox-nav');
-				if(options.titles)
-				{
-					navigation.setAttribute('title', id === 'kbox-nav--prev' ? catalog.previous : catalog.next);
+			build : {
+
+				/**
+				 * Build the HTML tags of the modal window overlay
+				 *
+				 * @returns {HTMLElement}
+				 */
+				overlay: function () {
+
+					let node = document.createElement('div');
+					node.setAttribute('id', 'kbox-overlay');
+					node.setAttribute('class', 'kbox-close--trigger');
+					return node;
+				},
+
+				/**
+				 * Build the HTML tags of the modal window navigation
+				 *
+				 * @param id
+				 * @returns {HTMLElement}
+				 */
+				navigation: function(id) {
+					let navigation = document.createElement('div');
+					navigation.setAttribute('id', id);
+					navigation.setAttribute('class', 'kbox-nav');
+					if(options.titles)
+					{
+						navigation.setAttribute('title', id === 'kbox-nav--prev' ? catalog.previous : catalog.next);
+					}
+					let arrow = document.createElement('span');
+					arrow.setAttribute('class', id === 'kbox-nav--prev' ? 'hc hc-arrow-round-back' : 'hc hc-arrow-round-forward');
+					navigation.appendChild(arrow);
+					return navigation;
+				},
+
+				/**
+				 * Build the HTML tags of the full modal window
+				 */
+				modal: function () {
+
+					let node = document.createElement('div');
+					node.setAttribute('id', 'kbox-modal');
+
+					let close = document.createElement('div');
+					close.setAttribute('id', 'kbox-close');
+					close.setAttribute('class', 'kbox-close--trigger');
+					if(options.titles)
+					{
+						close.setAttribute('title', catalog.close);
+					}
+
+					let cross = document.createElement('i');
+					cross.setAttribute('class', 'hc hc-close');
+
+					close.appendChild(cross);
+
+					let image = new Image();
+					image.setAttribute('id', 'kbox-image');
+
+					let info = document.createElement('div');
+					info.setAttribute('id', 'kbox-info');
+
+					let context = document.createElement('div');
+					context.setAttribute('id', 'kbox-info--context');
+
+					let theme = document.createElement('span');
+					theme.setAttribute('id', 'kbox-info--theme');
+
+					let quantities = document.createElement('span');
+					quantities.setAttribute('id', 'kbox-info--quantities');
+
+					let alt = document.createElement('div');
+					alt.setAttribute('id', 'kbox-info--alt');
+
+					context.appendChild(theme);
+					context.appendChild(quantities);
+
+					info.appendChild(context);
+					info.appendChild(alt);
+
+					let prev = DOM.build.navigation('kbox-nav--prev');
+					let next = DOM.build.navigation('kbox-nav--next');
+
+					node.appendChild(prev);
+					node.appendChild(image);
+					node.appendChild(next);
+					node.appendChild(info);
+					node.appendChild(close);
+
+					DOM.modal = node;
+
+					return node;
 				}
-				let arrow = document.createElement('span');
-				arrow.setAttribute('class', id === 'kbox-nav--prev' ? 'hc hc-arrow-round-back' : 'hc hc-arrow-round-forward');
-				navigation.appendChild(arrow);
-				return navigation;
 			},
 
-			/**
-			 * Build the HTML tags of the full modal window
-			 */
-			modal: function () {
-
-				let node = document.createElement('div');
-				node.setAttribute('id', 'kbox-modal');
-
-				let close = document.createElement('div');
-				close.setAttribute('id', 'kbox-close');
-				close.setAttribute('class', 'kbox-close--trigger');
-				if(options.titles)
-				{
-					close.setAttribute('title', catalog.close);
-				}
-
-				let cross = document.createElement('i');
-				cross.setAttribute('class', 'hc hc-close');
-
-				close.appendChild(cross);
-
-				let image = new Image();
-				image.setAttribute('id', 'kbox-image');
-
-				let info = document.createElement('div');
-				info.setAttribute('id', 'kbox-info');
-
-				let context = document.createElement('div');
-				context.setAttribute('id', 'kbox-info--context');
-
-				let theme = document.createElement('span');
-				theme.setAttribute('id', 'kbox-info--theme');
-
-				let quantities = document.createElement('span');
-				quantities.setAttribute('id', 'kbox-info--quantities');
-
-				let alt = document.createElement('div');
-				alt.setAttribute('id', 'kbox-info--alt');
-
-				context.appendChild(theme);
-				context.appendChild(quantities);
-
-				info.appendChild(context);
-				info.appendChild(alt);
-
-				let prev = DOM.navigation('kbox-nav--prev');
-				let next = DOM.navigation('kbox-nav--next');
-
-				node.appendChild(prev);
-				node.appendChild(image);
-				node.appendChild(next);
-				node.appendChild(info);
-				node.appendChild(close);
-
-				modal = node;
-
-				return node;
-			}
 		};
 
 		const self = {};

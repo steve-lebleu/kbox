@@ -1893,6 +1893,9 @@
     font-size: 0.9em;
     font-style: italic;
     background: rgba(0, 0, 0, 0.6); }
+    @media (max-width: 480px) {
+      #kbox-info--alt {
+        max-width: 180px; } }
 
 #kbox-close {
   display: block;
