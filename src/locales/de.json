@@ -3,5 +3,6 @@
   "close": "Schließen",
   "previous": "Vorheriges Bild",
   "next": "Nächstes Bild",
-  "position": "Bild {{current}} auf {{total}}"
+  "position": "Bild {{current}} auf {{total}}",
+  "notFound" : "Fehler: Dieses Bild konnte nicht geladen werden"
 }

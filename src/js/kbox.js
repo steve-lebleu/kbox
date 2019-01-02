@@ -137,6 +137,12 @@ if(typeof(window.kbox) === 'undefined')
 			img.src = a.href;
 			img.alt = a.firstElementChild.alt;
 
+			if(img.height === 0)
+			{
+				img.src = 'https://via.placeholder.com/350';
+				img.alt = catalog.notFound;
+			}
+
 			return img;
 		};
 
@@ -356,7 +362,7 @@ if(typeof(window.kbox) === 'undefined')
 			cursor: {
 
 				/**
-				 *
+				 * Adjust cursor to superior unit or 0
 				 */
 				increase : function() {
 					if(pointer + 1 > galleries[gallery].pictures.length - 1)
@@ -371,7 +377,7 @@ if(typeof(window.kbox) === 'undefined')
 				},
 
 				/**
-				 *
+				 * Adjust cursor to inferior unit or gallery length
 				 */
 				decrease : function() {
 					if(pointer - 1 < 0)

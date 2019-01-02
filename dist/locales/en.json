@@ -3,5 +3,6 @@
   "close" : "Close",
   "previous" : "Previous image",
   "next" : "Next image",
-  "position" : "Image {{current}} on {{total}}"
+  "position" : "Image {{current}} on {{total}}",
+  "notFound" : "Error : Error: this image could not be loaded"
 }
