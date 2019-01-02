@@ -43,8 +43,6 @@
     "require.js": "^1.0.0"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
-    "susy": "^2.2.14",
-    "terser-webpack-plugin": "^1.2.1"
+    "gulp": "^3.9.1"
   }
 }

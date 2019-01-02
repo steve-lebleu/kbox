@@ -9,7 +9,7 @@
  */
 
 const gulp = require('gulp');
-const terser = require('gulp-terser');
+const terser = require('gulp-terser'); // replace uglify-es
 const pump = require('pump');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
@@ -132,16 +132,15 @@ gulp.task('concat-pack', function(){
  * Images
  */
 
-gulp.task('img', function () {
-	return gulp.src(src + '/assets/img/*.{png,jpg,jpeg,gif,svg}')
+gulp.task('imgmin', function () {
+	return gulp.src(src + '/img/*.{png,jpg,jpeg,gif,svg}')
 	.pipe(imagemin())
-	.pipe(gulp.dest(dist + '/assets/img'));
+	.pipe(gulp.dest(demo + '/img'));
 });
 
-gulp.task('default', [ 'uglify', 'concat', 'concat-pack' ]);
-
-gulp.task('dev', ['sass']);
-gulp.task('prod', ['sass', 'css', 'uglify', 'concat', 'concat-pack']);
+/**
+ * Watch
+ */
 
 gulp.task('watch', function () {
 	livereload.listen();
@@ -152,3 +151,8 @@ gulp.task('watch', function () {
 		src + '/js/app.init.js'
 	], ['uglify', 'concat']);
 });
+
+gulp.task('default', [ 'uglify', 'concat', 'concat-pack' ]);
+gulp.task('dev', ['sass']);
+gulp.task('prod', ['sass', 'css', 'uglify', 'concat', 'concat-pack']);
+
