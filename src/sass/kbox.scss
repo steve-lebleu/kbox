@@ -4,7 +4,7 @@
 
 #kbox {
   &-overlay {
-    visibility: hidden;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,41 +13,25 @@
     background: $color-base-ie; /* IE 8 not support rgba */
     filter: alpha(opacity = $color-base-ie-opacity);  /* IE 8 not support opacity */
     background: $color-base;
-    z-index: -9999;
+    z-index: 9999;
     opacity: 0;
-    &.opened {
-      animation-name: show-overlay;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-    }
   }
   &-modal {
-    visibility: hidden;
+    display: none;
     position: fixed;
     font-family: Thasadith, Helvetica, Geneva, Tahoma, sans-serif;
     font-size: 16px;
     top: 0;
     left: 0;
     opacity: 0;
-    z-index: -10000;
+    z-index: 10000;
     & img {
       margin: 0 0 5px 0;
       border: 5px solid #fff;
       border-radius: 10px;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      z-index: -10000;
-      opacity: 0;
-      visibility: hidden;
-      &.opened {
-        animation-name: show-img;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-      }
-    }
-    &.opened {
-      animation-name: show-modal;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
+      z-index: 10000;
+      opacity: 1;
     }
   }
   &-nav {
@@ -154,19 +138,4 @@
       color: #fff;
     }
   }
-}
-
-@keyframes show-overlay {
-  from { opacity: 0; visibility: hidden; }
-  to { opacity: 1; visibility: visible ; z-index: 9999; }
-}
-
-@keyframes show-modal {
-  from { opacity: 0; visibility: hidden; width: 0; height: 0; }
-  to { opacity: 1; visibility: visible ; z-index: 10000; }
-}
-
-@keyframes show-img {
-  from { opacity: 0; visibility: hidden; width: 0; height: 0; }
-  to { opacity: 1; visibility: visible ; z-index: 10000; }
 }

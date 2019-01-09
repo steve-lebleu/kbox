@@ -2432,10 +2432,10 @@
 
 #kbox-overlay {
   position: fixed;
-  z-index: -9999;
+  z-index: 9999;
   top: 0;
   left: 0;
-  visibility: hidden;
+  display: none;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -2446,52 +2446,24 @@
   filter: alpha(opacity=80);
 }
 
-#kbox-overlay.opened {
-  -webkit-animation-name: show-overlay;
-          animation-name: show-overlay;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
 #kbox-modal {
   font-family: Thasadith, Helvetica, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   position: fixed;
-  z-index: -10000;
+  z-index: 10000;
   top: 0;
   left: 0;
-  visibility: hidden;
+  display: none;
   opacity: 0;
 }
 
 #kbox-modal img {
-  z-index: -10000;
-  visibility: hidden;
+  z-index: 10000;
   margin: 0 0 5px 0;
-  opacity: 0;
+  opacity: 1;
   border: 5px solid #fff;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, .5);
-}
-
-#kbox-modal img.opened {
-  -webkit-animation-name: show-img;
-          animation-name: show-img;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-#kbox-modal.opened {
-  -webkit-animation-name: show-modal;
-          animation-name: show-modal;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
 }
 
 #kbox-nav--prev {
@@ -2603,90 +2575,4 @@
   padding: 5px 0 0 0;
   color: #fff;
   background: #000;
-}
-
-@-webkit-keyframes show-overlay {
-  from {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 9999;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@keyframes show-overlay {
-  from {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 9999;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show-modal {
-  from {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 10000;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@keyframes show-modal {
-  from {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 10000;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes show-img {
-  from {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 10000;
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
-@keyframes show-img {
-  from {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-    opacity: 0;
-  }
-
-  to {
-    z-index: 10000;
-    visibility: visible;
-    opacity: 1;
-  }
 }

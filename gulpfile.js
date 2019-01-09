@@ -156,5 +156,5 @@ gulp.task('watch', function () {
 
 gulp.task('default', [ 'uglify', 'concat', 'concat-pack' ]);
 gulp.task('dev', ['sass']);
-gulp.task('prod', ['sass', 'css', 'uglify', 'concat', 'concat-pack']);
+gulp.task('prod', ['sass', 'css', 'minify-css', 'uglify', 'concat', 'concat-pack']);
 

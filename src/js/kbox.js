@@ -84,7 +84,7 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		let options = {
 			lang: 'fr',
-			animationSpeed: 750,
+			animationSpeed: 500,
 			keyboard: true,
 			titles: true,
 			afterOpening : function(e) {},
@@ -281,7 +281,7 @@ if(typeof(window.kbox) === 'undefined')
 
 			fill();
 
-			DOM.overlay.classList.add('opened');
+			Velocity(DOM.overlay, { opacity: 1 , display: 'block' , duration: 200 });
 
 			Velocity(DOM.modal, {
 				top : get.position().y,
@@ -304,8 +304,7 @@ if(typeof(window.kbox) === 'undefined')
 
 			pointer = 0; state = false; gallery = '';
 
-			DOM.overlay.classList.remove('opened');
-
+			Velocity(DOM.overlay, { display: 'none', opacity: 0, duration: 250 } );
 			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
 		};
 
@@ -314,7 +313,7 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const transition = function() {
 
-			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() {
+			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, "spring", function() {
 
 					fill();
 
@@ -323,8 +322,8 @@ if(typeof(window.kbox) === 'undefined')
 						left : get.position().x,
 						opacity: 1,
 						display: 'block',
-						duration: options.animationSpeed
-					}, function() {  });
+						duration: options.animationSpeed,
+					}, "spring", function() {  });
 
 				});
 		};
@@ -621,8 +620,7 @@ if(typeof(window.kbox) === 'undefined')
 
 		/**
 		 * Sub namespace DOM management
-		 *
-		 * @type {{overlay: null, build: {navigation: (function(*=): HTMLElement), overlay: (function(): HTMLElement), modal: (function(): HTMLElement)}, quantities: null, alt: null, theme: null, body: null, modal: null}}
+		 * @type {{image: null, init: init, overlay: null, build: {navigation: (function(*=): HTMLElement), overlay: (function(): HTMLElement), modal: (function(): HTMLElement)}, quantities: null, alt: null, theme: null, body: null, modal: null}}
 		 */
 		const DOM = {
 
@@ -645,7 +643,7 @@ if(typeof(window.kbox) === 'undefined')
 			modal : null,
 
 			/**
-			 * #kbox-image ImageElement
+			 * #kbox-image HTMLElement
 			 *
 			 */
 			image : null,
