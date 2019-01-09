@@ -43,10 +43,10 @@ const vendors = './vendors';
 
 gulp.task('sass', function () {
 	return gulp.src([ src + '/sass/kbox.scss', src + '/sass/demo.scss' ])
-	  	.pipe(sourcemaps.init())
-	  	.pipe(sass().on('error', sass.logError))
-	  	.pipe(sourcemaps.write('./'))
-	  	.pipe(gulp.dest(lib + '/css'))
+	  .pipe(sourcemaps.init())
+	  .pipe(sass().on('error', sass.logError))
+	  .pipe(sourcemaps.write('./'))
+	  .pipe(gulp.dest(lib + '/css'))
 		.pipe(livereload());
 });
 
@@ -90,14 +90,15 @@ gulp.task('critical', function() {
 
 gulp.task('uglify', function (cb) {
 	pump([
-			gulp.src([
-				src + '/js/kbox.js'
-			]),
-			terser(),
-			rename({
-				suffix: '.min'
-			}),
-			gulp.dest(lib + '/js/')
+		gulp.src([
+			src + '/js/kbox.js'
+		]),
+		terser(),
+		rename({
+			suffix: '.min'
+		}),
+		gulp.dest(lib + '/js/'),
+		gulp.dest(demo + '/js/'),
 		],
 		cb
 	);

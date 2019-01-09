@@ -281,16 +281,14 @@ if(typeof(window.kbox) === 'undefined')
 
 			fill();
 
-			Velocity(DOM.overlay, { opacity: 1 , display: 'block' , duration: 200 });
+			DOM.overlay.classList.add('opened');
 
-			Velocity(DOM.modal, {
-				top : get.position().y,
-				left : get.position().x,
-				opacity: 1,
-				display: 'block',
-				duration: options.animationSpeed
-			}, function() { window.dispatchEvent(events.custom.modal.opened); });
+			DOM.modal.setAttribute('style', `top:${get.position().y}px; left:${get.position().x}px;`);
+			DOM.modal.classList.add('opened');
 
+			DOM.image.classList.add('opened');
+
+			window.dispatchEvent(events.custom.modal.opened);
 		};
 
 		/**
@@ -304,8 +302,14 @@ if(typeof(window.kbox) === 'undefined')
 
 			pointer = 0; state = false; gallery = '';
 
-			Velocity(DOM.overlay, { display: 'none', opacity: 0, duration: 250 } );
-			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
+			DOM.overlay.classList.remove('opened');
+
+			DOM.modal.setAttribute('style', '');
+			DOM.modal.classList.remove('opened');
+
+			DOM.image.classList.remove('opened');
+
+			window.dispatchEvent(events.custom.modal.closed);
 		};
 
 		/**
@@ -313,19 +317,15 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const transition = function() {
 
-			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() {
+			DOM.modal.setAttribute('style', '');
+			DOM.modal.classList.remove('opened');
 
-					fill();
+			fill();
 
-					Velocity(DOM.modal, {
-						top : get.position().y,
-						left : get.position().x,
-						opacity: 1,
-						display: 'block',
-						duration: options.animationSpeed
-					}, function() { window.dispatchEvent(events.custom.modal.transitioned); });
+			DOM.modal.setAttribute('style', `top:${get.position().y}px; left:${get.position().x}px;`);
+			DOM.modal.classList.add('opened');
 
-				});
+			window.dispatchEvent(events.custom.modal.transitioned);
 		};
 
 		/**
@@ -644,6 +644,12 @@ if(typeof(window.kbox) === 'undefined')
 			modal : null,
 
 			/**
+			 * #kbox-image ImageElement
+			 *
+			 */
+			image : null,
+
+			/**
 			 * #kbox-info--theme HTMLElement
 			 *
 			 */
@@ -671,6 +677,7 @@ if(typeof(window.kbox) === 'undefined')
 
 				DOM.overlay 		= document.getElementById('kbox-overlay');
 				DOM.modal 			= document.getElementById('kbox-modal');
+				DOM.image 			= document.getElementById('kbox-image');
 				DOM.theme 			= document.getElementById('kbox-info--theme');
 				DOM.alt 				= document.getElementById('kbox-info--alt');
 				DOM.quantities 	= document.getElementById('kbox-info--quantities');
