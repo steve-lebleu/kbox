@@ -2,7 +2,7 @@
 
 [![GitHub version](https://badge.fury.io/gh/e-lLess%2Fkslider.svg)](https://badge.fury.io/gh/e-lLess%2Fkslider)
 
-You were dreaming of a light, concise, incisive and efficient script to manage your small modal animations like a pop-up ninja, and kbox.js has arrived with her 7ko all wet.
+You were dreaming of a light, concise, incisive and efficient script to manage your small modal animations like a pop-up ninja, and kbox.js has arrived.
         
 ## Demo
 
@@ -30,10 +30,10 @@ In your HTML page, between <head> tags, retrieve styles:
 <link href="css/kbox.css" rel="stylesheet" type="text/css" media="screen" />
 ```
 
-And link kbox pack script :
+And link kbox pack script (contains velocity.js and kbox.js as packaged solution) :
 
 ``` html 
-<script type="text/javascript" src="js/kbox.min.js"></script>
+<script type="text/javascript" src="js/kbox.pack.min.js"></script>
 ```
 
 Puts the kbox class on the links where you will place your images, and replace data attributes values with your own values :
@@ -58,7 +58,9 @@ If your language is not supported, create your own locale file and do a pull req
     
 ## Dependencies 
 
-Kbox uses hody-icons font icon, packaged into the project.
+Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file instead of kbox.pack.min.js. 
+
+Kbox uses also hody-icons font icon, packaged into the project.
 
 ## Options
 

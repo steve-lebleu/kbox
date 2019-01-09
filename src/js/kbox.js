@@ -283,12 +283,14 @@ if(typeof(window.kbox) === 'undefined')
 
 			DOM.overlay.classList.add('opened');
 
-			DOM.modal.setAttribute('style', `top:${get.position().y}px; left:${get.position().x}px;`);
-			DOM.modal.classList.add('opened');
+			Velocity(DOM.modal, {
+				top : get.position().y,
+				left : get.position().x,
+				opacity: 1,
+				display: 'block',
+				duration: options.animationSpeed
+			}, function() { window.dispatchEvent(events.custom.modal.opened); });
 
-			DOM.image.classList.add('opened');
-
-			window.dispatchEvent(events.custom.modal.opened);
 		};
 
 		/**
@@ -304,12 +306,7 @@ if(typeof(window.kbox) === 'undefined')
 
 			DOM.overlay.classList.remove('opened');
 
-			DOM.modal.setAttribute('style', '');
-			DOM.modal.classList.remove('opened');
-
-			DOM.image.classList.remove('opened');
-
-			window.dispatchEvent(events.custom.modal.closed);
+			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() { window.dispatchEvent(events.custom.modal.closed) } );
 		};
 
 		/**
@@ -317,15 +314,19 @@ if(typeof(window.kbox) === 'undefined')
 		 */
 		const transition = function() {
 
-			DOM.modal.setAttribute('style', '');
-			DOM.modal.classList.remove('opened');
+			Velocity(DOM.modal, { display: 'none', opacity: 0, duration: 250 }, function() {
 
-			fill();
+					fill();
 
-			DOM.modal.setAttribute('style', `top:${get.position().y}px; left:${get.position().x}px;`);
-			DOM.modal.classList.add('opened');
+					Velocity(DOM.modal, {
+						top : get.position().y,
+						left : get.position().x,
+						opacity: 1,
+						display: 'block',
+						duration: options.animationSpeed
+					}, function() {  });
 
-			window.dispatchEvent(events.custom.modal.transitioned);
+				});
 		};
 
 		/**

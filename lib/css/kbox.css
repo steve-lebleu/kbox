@@ -1848,8 +1848,8 @@
   position: fixed;
   font-family: Thasadith, Helvetica, Geneva, Tahoma, sans-serif;
   font-size: 16px;
-  top: 5%;
-  left: 5%;
+  top: 0;
+  left: 0;
   opacity: 0;
   z-index: -10000; }
   #kbox-modal img {
@@ -1862,11 +1862,11 @@
     visibility: hidden; }
     #kbox-modal img.opened {
       animation-name: show-img;
-      animation-duration: 0.80s;
+      animation-duration: 1s;
       animation-fill-mode: forwards; }
   #kbox-modal.opened {
     animation-name: show-modal;
-    animation-duration: 0.80s;
+    animation-duration: 1s;
     animation-fill-mode: forwards; }
 
 #kbox-nav--prev {

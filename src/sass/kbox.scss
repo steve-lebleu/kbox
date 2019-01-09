@@ -26,8 +26,8 @@
     position: fixed;
     font-family: Thasadith, Helvetica, Geneva, Tahoma, sans-serif;
     font-size: 16px;
-    top: 5%;
-    left: 5%;
+    top: 0;
+    left: 0;
     opacity: 0;
     z-index: -10000;
     & img {
@@ -40,13 +40,13 @@
       visibility: hidden;
       &.opened {
         animation-name: show-img;
-        animation-duration: 0.80s;
+        animation-duration: 1s;
         animation-fill-mode: forwards;
       }
     }
     &.opened {
       animation-name: show-modal;
-      animation-duration: 0.80s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
     }
   }
