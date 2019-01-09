@@ -8,6 +8,11 @@
   },
   "author": "Steve Lebleu",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konfer-be/kbox.git"
+  },
+  "keywords" : [ "vanilla", "javascript" ,"lightbox", "modal" ],
   "devDependencies": {
     "critical": "^1.3.3",
     "gulp-autoprefixer": "^5.0.0",
