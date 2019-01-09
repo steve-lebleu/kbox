@@ -62,12 +62,13 @@ gulp.task('css', function () {
 });
 
 gulp.task('minify-css', function () {
-	return gulp.src(dist + '/css/*.css')
+	return gulp.src(lib + '/css/*.css')
 		.pipe(csso())
 		.pipe(rename({
 			suffix: '.min'
 		}))
 		.pipe(gulp.dest(dist + '/css/'))
+		.pipe(gulp.dest(demo + '/css/'))
 		.pipe(livereload());
 });
 

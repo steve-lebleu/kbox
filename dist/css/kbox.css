@@ -2582,9 +2582,6 @@
   position: absolute;
   top: 0;
   display: block;
-  width: 101%;
-    /* IE8 bugfix calc() not supported */
-  width: calc(100% + 10px);
   width: 25%;
   height: calc(100% - 50px);
   margin: 0 auto;
