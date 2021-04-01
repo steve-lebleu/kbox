@@ -1,28 +1,22 @@
-# kbox - An ultra-simple vanilla.js modal gallery
+# Vanilla.js image modal gallery
 
-[![GitHub version](https://badge.fury.io/gh/e-lLess%2Fkslider.svg)](https://badge.fury.io/gh/e-lLess%2Fkslider)
+![Requires.io (branch)](https://img.shields.io/requires/github/konfer-be/kbox/master)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/konfer-be/kbox)
+[![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/gpl-license.php)
 
-You were dreaming of a light, concise, incisive and efficient script to manage your small modal animations like a pop-up ninja, and kbox.js has arrived.
+Simple image modal gallery in pure vanilla.js.
         
-## Demo
+## > Demo
 
 https://demo.konfer.be/kbox/
 
-## Installation
+## > Install
 
-Obvious install with [Bower](http://bower.io) (deprecated) :
+``` bash
+> $ npm install kbox --save
+```
 
-`$ bower install kbox --save`
-
-Also with [Yarn](https://yarnpkg.com/lang/en/) :
-
-`$ yarn add kbox --save`
-
-Or with [NPM](https://www.npmjs.com/) :
-
-`$ npm install kbox --save`
-
-## How to use ?
+## > How to use ?
 
 In your HTML page, between <head> tags, retrieve styles:
 
@@ -50,19 +44,19 @@ An then, invoke the plugin :
 window.kbox();
 ```
 
-## I18n
+## > I18n
 
 Kbox display interface text contents in the following languages : french, english, dutch, german, italian, spanish, polish and russian. 
 
 If your language is not supported, create your own locale file and do a pull request !
     
-## Dependencies 
+## > Dependencies 
 
 Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file instead of kbox.pack.min.js. 
 
 Kbox uses also hody-icons font icon, packaged into the project.
 
-## Options
+## > Options
 
 Following options are available :
 
@@ -73,4 +67,7 @@ Following options are available :
 * **afterOpening**: function(e), function, callback fired after modal opening
 * **afterTransition**: function(e), function, callback fired after image display transition
 * **afterClosing**: function(e), function, callback fired after modal closing
-          
+
+## > Licence
+
+[GPL](https://opensource.org/licenses/gpl-license.php)
