@@ -1,14 +1,13 @@
 # Vanilla.js image modal gallery
 
-![Requires.io (branch)](https://img.shields.io/requires/github/konfer-be/kbox/master)
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/konfer-be/kbox)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/steve-lebleu/kbox)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/gpl-license.php)
 
 Simple image modal gallery in pure vanilla.js.
         
 ## > Demo
 
-https://demo.konfer.be/kbox/
+https://fabrik.konfer.be/kbox/
 
 ## > Install
 
@@ -71,3 +70,10 @@ Following options are available :
 ## > Licence
 
 [GPL](https://opensource.org/licenses/gpl-license.php)
+
+## Todo's
+
+- Use fabrikable template
+- UT
+- Github actions
+- Security
