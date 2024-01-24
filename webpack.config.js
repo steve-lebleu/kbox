@@ -12,7 +12,6 @@ module.exports = {
       bundles: [
         {
           src: [
-            './src/vendors/velocity.js',
             './src/js/kbox.js',
           ],
           dest: './dist/js/kbox.min.js',

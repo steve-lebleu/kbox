@@ -1,10 +1,10 @@
 {
   "name": "kbox",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "jQuery gallery plugin",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir -p dist && cp -r src/index.html src/fonts/ src/img/ src/locales/ dist/ & npm run js & npm run css & exit",
+    "build": "mkdir -p dist && cp -r src/index.html src/fonts/ src/img/ src/vendors/ src/locales/ dist/ & npm run js & npm run css & exit",
     "css": "node-sass ./src/sass/kbox.scss ./dist/css/kbox.min.css --output-style compressed",
     "js": "webpack",
     "cypress:open": "cypress open",
