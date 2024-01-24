@@ -1,9 +1,0 @@
-{
-  "display": "Wyświetlacz",
-  "close": "Zamknij",
-  "previous": "Poprzedni obraz",
-  "next": "Następny obraz",
-  "position": "Obraz {{current}} na {{total}}",
-  "notFound" : "Błąd: ten obraz nie mógł być załadowany"
-}
-

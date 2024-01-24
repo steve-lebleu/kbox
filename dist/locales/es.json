@@ -1,9 +1,0 @@
-{
-  "display": "Pantalla",
-  "close": "Cerrar",
-  "previous": "Imagen anterior",
-  "next": "Siguiente imagen",
-  "position": "Imagen {{current}} en {{total}}",
-  "notFound" : "Error: esta imagen no se pudo cargar"
-}
-

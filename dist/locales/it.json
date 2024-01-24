@@ -1,8 +1,0 @@
-{
-  "display" : "Affiggere",
-  "close" : "Chiudere",
-  "previous" : "Immagine precedente",
-  "next" : "Immagine successiva",
-  "position" : "Immagine {{current}} su {{total}}",
-  "notFound" : "Errore: questa immagine non ha potuto essere caricata"
-}

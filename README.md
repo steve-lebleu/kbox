@@ -75,10 +75,3 @@ Following options are available :
 ## > Licence
 
 [GPL](https://opensource.org/licenses/gpl-license.php)
-
-## Todo's
-
-- Use fabrikable template
-- UT
-- Github actions
-- Security
