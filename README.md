@@ -1,10 +1,10 @@
-# Vanilla.js image modal gallery
+# Vanilla image modal gallery
 
 ![Github action workflow status](https://github.com/steve-lebleu/kbox/actions/workflows/build.yml/badge.svg?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/steve-lebleu/kbox/badge)](https://www.codefactor.io/repository/github/steve-lebleu/kbox)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/gpl-license.php)
 
-Simple image modal gallery in pure vanilla.js.
+Simple image modal gallery pure vanilla.js.
         
 ## > Demo
 
@@ -56,7 +56,7 @@ If your language is not supported, create your own locale file and do a pull req
     
 ## > Dependencies 
 
-Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file instead of kbox.pack.min.js. 
+Kbox uses [velocity.js](http://velocityjs.org/) to display progressive animations.
 
 Kbox uses also hody-icons font icon, packaged into the project.
 
