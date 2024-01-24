@@ -1,8 +1,0 @@
-{
-  "display": "Display",
-  "close": "Sluiten",
-  "previous": "Vorige afbeelding",
-  "next": "Volgende afbeelding",
-  "position": "Afbeelding {{current}} op {{total}}",
-  "notFound" : "Fout: deze afbeelding kon niet geladen worden"
-}

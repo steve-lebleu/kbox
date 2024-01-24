@@ -1,0 +1,60 @@
+name: Build
+on:
+  push:
+    branches: [ dev, main, master, hotfix/*, feature/*, release/* ]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      RUNNER: github
+      NODE_ENV: dev
+    steps:
+      - name: Github checkout
+        uses: actions/checkout@v4
+      - name: Setup node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.0'
+      - name: Install global Node.js dependencies
+        run:  npm i node-sass -g
+      - name: Install local Node.js dependencies
+        run:  npm i
+      - name: Build local project
+        run:  npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            dist
+          retention-days: 3
+  test:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    env:
+      RUNNER: github
+      NODE_ENV: dev
+    steps:
+      - name: Github checkout
+        uses: actions/checkout@v4
+      - name: Setup node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.0'
+      - name: Install global OS dependencies
+        run: sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - name: Install local Node.js dependencies
+        run:  npm i
+      - name: Create dist directory
+        run: mkdir dist
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist
+      - name: Run E2E tests
+        run: npm run start & npm run cypress:run
+        env:
+          CI: true

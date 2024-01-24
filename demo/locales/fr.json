@@ -1,8 +1,0 @@
-{
-  "display" : "Afficher",
-  "close" : "Fermer",
-  "previous" : "Image précédente",
-  "next" : "Image suivante",
-  "position" : "Image {{current}} sur {{total}}",
-  "notFound" : "Erreur : cette image n'a pas pu être chargée"
-}

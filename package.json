@@ -1,16 +1,21 @@
 {
   "name": "kbox",
   "version": "1.0.3",
-  "description": "Assets management for kbox.js",
+  "description": "jQuery gallery plugin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "mkdir -p dist && cp -r src/index.html src/fonts/ src/img/ src/locales/ dist/ & npm run js & npm run css & exit",
+    "css": "node-sass ./src/sass/kbox.scss ./dist/css/kbox.min.css --output-style compressed",
+    "js": "webpack",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome ./cypress",
+    "start": "webpack serve"
   },
   "author": "Steve Lebleu",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/konfer-be/kbox.git"
+    "url": "https://github.com/steve-lebleu/kbox.git"
   },
   "keywords": [
     "vanilla",
@@ -19,23 +24,14 @@
     "modal"
   ],
   "devDependencies": {
-    "critical": "3.0.0",
-    "gulp": "4.0.2",
-    "gulp-autoprefixer": "7.0.1",
-    "gulp-concat": "2.6.1",
-    "gulp-critical-css": "1.0.1",
-    "gulp-cssbeautify": "3.0.0",
-    "gulp-csso": "4.0.1",
-    "gulp-imagemin": "7.1.0",
-    "gulp-livereload": "4.0.2",
-    "gulp-rename": "2.0.0",
-    "gulp-sass": "4.1.0",
-    "gulp-sitemap": "8.0.0",
-    "gulp-sourcemaps": "3.0.0",
-    "gulp-terser": "2.0.1",
-    "gulp-uglify": "3.0.2",
-    "jquery": "3.1.0",
-    "pump": "3.0.0",
-    "require.js": "1.0.0"
+    "@babel/runtime": "^7.23.6",
+    "cypress": "^13.6.3",
+    "html-loader": "^5.0.0",
+    "node-sass": "^9.0.0",
+    "terser": "^5.26.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-concat-files-plugin": "^0.5.2",
+    "webpack-dev-server": "^4.15.1"
   }
 }

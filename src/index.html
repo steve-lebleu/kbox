@@ -14,264 +14,50 @@
 
     <link href='https://fonts.googleapis.com/css?family=Lato|Open+Sans|Montserrat' rel='stylesheet' type='text/css' />
 
-    <link href="./../demo/css/demo.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="./../demo/css/kbox.min.css" rel="stylesheet" type="text/css" media="screen" />
-
-    <script>
-			if(window.location.hostname === 'demo.konfer.be')
-			{
-				var _rollbarConfig = {
-					accessToken: "3827877556ee4fff8c12aa2d0216abe6",
-					captureUncaught: true,
-					captureUnhandledRejections: true,
-					payload: {
-						environment: "production"
-					}
-				};
-				// Rollbar Snippet
-				!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.6/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=d.bind(null,c);t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;"function"==typeof e._rollbarOldOnError?t=e._rollbarOldOnError:r.onerror&&!r.onerror.belongsToShim&&(t=r.onerror,e._rollbarOldOnError=t);var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};a.belongsToShim=o,r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
-				// End Rollbar Snippet
-			}
-    </script>
+    <link href="./css/kbox.min.css" rel="stylesheet" type="text/css" media="screen" />
 
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link class="codestyle" rel="stylesheet" href="./../demo/css/highlight/railscasts.css" />
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
-
-    <script type="text/javascript">
-			hljs.configure({
-				tabReplace: '    '
-			});
-			hljs.initHighlightingOnLoad();
-    </script>
-
-    <script src="./../vendors/velocity.min.js"></script>
-    <script src="./js/kbox.js"></script>
+    <script src="./vendors/velocity.min.js"></script>
+    <script src="./js/kbox.min.js"></script>
 
 </head>
 
 <body>
 
-<a href="https://github.com/konfer-be/kbox" class="github-corner">
-    <svg class="github-svg" width="80" height="80" viewBox="0 0 250 250"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
-</a>
-
-<nav>
-    <a href="https://lab.konfer.be/developpement/creer-une-lightbox-en-javascript.html">Back to the article</a>
-</nav>
-
-<header>
-    <h1>Kbox.js</h1>
-    <span class="text--slogan">Vanilla.js lightbox system</span>
-    <a class="button--download" href="https://github.com/konfer-be/kbox/archive/master.zip" target="_blank">
-        <span class="btn--txt"><i class="icon-download"></i> Download</span>
-        <span class="btn--bg_hidden"></span>
-    </a>
-</header>
-
-<div id="wrapper">
-
+  <div id="wrapper">
     <div class="kbox-demo-wrapper">
+      <a class="kbox" data-kbox="Animals" href="./img/item-1.jpg">
+        <img src="./img/item-1.jpg" class="kbox-demo-thumbnail" alt="A frog" />
+      </a>
 
-        <a class="kbox" data-kbox="Animals" href="./img/item-1.jpg">
-            <img src="./img/item-1.jpg" class="kbox-demo-thumbnail" alt="A frog" />
-        </a>
+      <a class="kbox" data-kbox="Art" href="./img/item-2.jpg">
+        <img src="./img/item-2.jpg" class="kbox-demo-thumbnail"  alt="Fisherman in her boat" />
+      </a>
 
-        <a class="kbox" data-kbox="Art" href="./img/item-2.jpg">
-            <img src="./img/item-2.jpg" class="kbox-demo-thumbnail"  alt="Fisherman in her boat" />
-        </a>
+      <a class="kbox" data-kbox="Art" href="./img/item-3.jpg">
+        <img src="./img/item-3.jpg" class="kbox-demo-thumbnail"  alt="Train rails" />
+      </a>
 
-        <a class="kbox" data-kbox="Art" href="./img/item-3.jpg">
-            <img src="./img/item-3.jpg" class="kbox-demo-thumbnail"  alt="Train rails" />
-        </a>
+      <a class="kbox" data-kbox="Animals" href="./img/item-4.jpg">
+        <img src="./img/item-4.jpg" class="kbox-demo-thumbnail"  alt="Heron at fishing" />
+      </a>
 
-        <a class="kbox" data-kbox="Animals" href="./img/item-4.jpg">
-            <img src="./img/item-4.jpg" class="kbox-demo-thumbnail"  alt="Heron at fishing" />
-        </a>
+      <a class="kbox" data-kbox="Art" href="./img/item-5.jpg">
+        <img src="./img/item-5.jpg" class="kbox-demo-thumbnail"  alt="Saint-Remy-de-Provence, birth house of Nostradamus" />
+      </a>
 
-        <a class="kbox" data-kbox="Art" href="./img/item-5.jpg">
-            <img src="./img/item-5.jpg" class="kbox-demo-thumbnail"  alt="Saint-Remy-de-Provence, birth house of Nostradamus" />
-        </a>
-
-        <a class="kbox" data-kbox="Art" href="./img/item-6.jpg">
-            <img src="./img/item-6.jpg" class="kbox-demo-thumbnail"  alt="Cagliari building" />
-        </a>
-
+      <a class="kbox" data-kbox="Art" href="./img/item-6.jpg">
+        <img src="./img/item-6.jpg" class="kbox-demo-thumbnail"  alt="Cagliari building" />
+      </a>
     </div>
+  </div>
 
-</div>
-
-<section class="wrapper">
-
-    <h2><i class="icon-plug"></i> Installation</h2>
-
-    <p>Obvious install with bower (deprecated)</p>
-
-    <pre>
-    <code class="console">
-$ bower install kbox --save
-    </code></pre>
-
-    <p>Also with yarn </p>
-
-    <pre>
-    <code class="console">
-$ yarn add kbox --save
-    </code></pre>
-
-    <p>Or with npm </p>
-
-    <pre>
-    <code class="console">
-$ npm install kbox --save
-    </code></pre>
-
-    <h2><i class="icon-info"></i> How to use ?</h2>
-
-    <p>In your HTML page, between &lt;head&gt; tags, import CSS code from <em>css/kbox.css</em></p>
-
-    <pre>
-    <code class="html">
-&lt;link href="css/kbox.css" rel="stylesheet" type="text/css" media="screen" /&gt;
-    </code>
-</pre>
-
-    <p>Next, import Javascript file <em>js/kbox.pack.min.js</em> (contains velocity.js and kbox.js as packaged solution) :</p>
-
-    <pre>
-    <code class="html">
-&lt;script type="text/javascript" src="js/kbox.pack.min.js"&gt;&lt;/script&gt;
-    </code>
-</pre>
-
-    <p>Puts the <code>kbox</code> class on the links where you will place your images, and replace data attributes values with your own values :</p>
-
-    <ul>
-        <li><em>data-kox:</em> as the gallery collection name of each image.</li>
-    </ul>
-
-    <pre>
-    <code class="html">
-&lt;a class="kbox" data-kbox="Travels"&gt; &lt;img src="url-to-your-img.jpg" alt="" /&gt; &lt;a&gt;
-    </code>
-</pre>
-
-    <p>Finally, initialize the plugin at DOM ready :</p>
-
-    <pre>
-    <code class="Javascript">
-kbox({});
-    </code>
-</pre>
-
-    <h2><i class="icon-link-ext"></i> Dependencies</h2>
-
-    <p>Kbox uses <a class="on--page" href="http://velocityjs.org/" target="_blank">velocity.js</a> to display progressive animations. If you have already linked velocity.js in your project, import the kbox.min.js file instead of kbox.pack.min.js.</p>
-
-    <p>Kbox uses also hody-icons font icon, packaged into the project.</p>
-
-    <h2><i class="icon-globe"></i> I18n</h2>
-
-    <p>Kbox display interface text contents in the following languages : french, english, dutch, german, italian, spanish, polish and russian. If your language is not supported, create your own locale file and do a pull request !</p>
-
-    <h2><i class="icon-cog-alt"></i> Options</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Parameter</th>
-            <th>Type</th>
-            <th>Definition</th>
-            <th>Values</th>
-            <th>Default</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>lang</td>
-            <td>string</td>
-            <td>Catalog lang to use</td>
-            <td>'fr'|'en'|'de'|'es'|'it'|'nl'|'pl'|'ru'</td>
-            <td>'fr'</td>
-        </tr>
-        <tr>
-            <td>animationSpeed</td>
-            <td>int</td>
-            <td>Animation speed to transitions between each image</td>
-            <td>*</td>
-            <td>750</td>
-        </tr>
-        <tr>
-            <td>keyboard</td>
-            <td>boolean</td>
-            <td>Allow the keyboard navigation into modal window</td>
-            <td>true|false</td>
-            <td>true</td>
-        </tr>
-        <tr>
-            <td>titles</td>
-            <td>boolean</td>
-            <td>Display titles attributes</td>
-            <td>true|false</td>
-            <td>true</td>
-        </tr>
-        <tr>
-            <td>afterOpening</td>
-            <td>function</td>
-            <td>Callback fired after modal opening</td>
-            <td>function</td>
-            <td>function(e) { }</td>
-        </tr>
-        <tr>
-            <td>afterTransition</td>
-            <td>function</td>
-            <td>Callback fired after each image transition</td>
-            <td>function</td>
-            <td>function(e) { }</td>
-        </tr>
-        <tr>
-            <td>afterClosing</td>
-            <td>function</td>
-            <td>Callback fired after modal closing</td>
-            <td>function</td>
-            <td>function(e) { }</td>
-        </tr>
-        </tbody>
-    </table>
-
-</section>
-
-<script type="text/javascript">
-	window.kbox({ lang : 'fr' });
-</script>
-<footer>
-
-    <p>
-        <a href="https://www.linkedin.com/company-beta/18140230" target="_blank" class="link-icon">
-            <i class="icon-linkedin"></i>
-        </a>
-        <a href="https://github.com/konfer-be" target="_blank" class="link-icon">
-            <i class="icon-github-circled"></i>
-        </a>
-        <a href="https://www.facebook.com/konferstudio/" target="_blank" class="link-icon">
-            <i class="icon-facebook"></i>
-        </a>
-        <a href="https://twitter.com/konferstudio" target="_blank" class="link-icon">
-            <i class="icon-twitter"></i>
-        </a>
-    </p>
-
-    <p>
-        &copy; 2018 Konfer
-        <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">kbox.js</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.konfer.be" rel="cc:morePermissions">https://www.konfer.be</a>.
-    </p>
-
-
-</footer>
+  <script type="text/javascript">
+    window.kbox({ lang : 'fr' });
+  </script>>
 
 </body>
 

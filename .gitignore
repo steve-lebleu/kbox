@@ -63,4 +63,8 @@ typings/
 # Map files
 *.map
 
+# IntelliJ file
 .idea/
+
+# Clear task
+dist/

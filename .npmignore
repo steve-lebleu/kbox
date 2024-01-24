@@ -1,1 +1,18 @@
-node_modules/
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+
+# Node modules, can be retrieved by npm
+node_modules
+
+# Retrieved by bower
+src
+
+# E2E tests
+cypress
+
+# Github workflows
+.github

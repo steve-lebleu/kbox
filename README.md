@@ -1,6 +1,7 @@
 # Vanilla.js image modal gallery
 
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/steve-lebleu/kbox)
+![Github action workflow status](https://github.com/steve-lebleu/kbox/actions/workflows/build.yml/badge.svg?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/steve-lebleu/kbox/badge)](https://www.codefactor.io/repository/github/steve-lebleu/kbox)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/gpl-license.php)
 
 Simple image modal gallery in pure vanilla.js.
@@ -8,6 +9,10 @@ Simple image modal gallery in pure vanilla.js.
 ## > Demo
 
 https://fabrik.konfer.be/kbox/
+
+## Github page
+
+https://steve-lebleu.github.io/kbox/
 
 ## > Install
 
