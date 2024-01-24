@@ -1,7 +1,7 @@
 # Vanilla image modal gallery
 
 ![Github action workflow status](https://github.com/steve-lebleu/kbox/actions/workflows/build.yml/badge.svg?branch=master)
-![GitHub Release](https://img.shields.io/github/v/release/:steve-lebleu/:kbox)
+![GitHub Release](https://img.shields.io/github/v/release/steve-lebleu/kbox?logo=GitHub)
 [![CodeFactor](https://www.codefactor.io/repository/github/steve-lebleu/kbox/badge)](https://www.codefactor.io/repository/github/steve-lebleu/kbox)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/gpl-license.php)
 
