@@ -1,7 +1,7 @@
 {
   "name": "kbox",
   "version": "1.1.0",
-  "description": "jQuery gallery plugin",
+  "description": "Vanilla JS modal gallery plugin",
   "main": "index.js",
   "scripts": {
     "build": "mkdir -p dist && cp -r src/index.html src/fonts/ src/img/ src/vendors/ src/locales/ dist/ & npm run js & npm run css & exit",
